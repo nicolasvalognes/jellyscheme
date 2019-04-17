@@ -9,8 +9,8 @@
 "
 "         "A colorful, dark color scheme for Vim."
 "
-" File:         jellybeans.vim
-" URL:          github.com/nanotech/jellybeans.vim
+" File:         jellyscheme.vim
+" URL:          github.com/nanotech/jellyscheme.vim
 " Scripts URL:  vim.org/scripts/script.php?script_id=2555
 " Maintainer:   NanoTech (nanotech.nanotechcorp.net)
 " Version:      1.6
@@ -63,7 +63,7 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let colors_name = "jellybeans"
+let colors_name = "jellyscheme"
 
 if has("gui_running") || (has('termguicolors') && &termguicolors)
   let s:true_color = 1
@@ -78,23 +78,23 @@ else
 endif
 
 " Configuration Variables:
-" - g:jellybeans_overrides          (default = {})
-" - g:jellybeans_use_lowcolor_black (default = 0)
-" - g:jellybeans_use_gui_italics    (default = 1)
-" - g:jellybeans_use_term_italics   (default = 0)
+" - g:jellyscheme_overrides          (default = {})
+" - g:jellyscheme_use_lowcolor_black (default = 0)
+" - g:jellyscheme_use_gui_italics    (default = 1)
+" - g:jellyscheme_use_term_italics   (default = 0)
 
 let s:background_color = "151515"
 
-if exists("g:jellybeans_overrides")
-  let s:overrides = g:jellybeans_overrides
+if exists("g:jellyscheme_overrides")
+  let s:overrides = g:jellyscheme_overrides
 else
   let s:overrides = {}
 endif
 
 " Backwards compatibility
-if exists("g:jellybeans_background_color")
-  \ || exists("g:jellybeans_background_color_256")
-  \ || exists("g:jellybeans_use_term_background_color")
+if exists("g:jellyscheme_background_color")
+  \ || exists("g:jellyscheme_background_color_256")
+  \ || exists("g:jellyscheme_use_term_background_color")
 
   let s:overrides = deepcopy(s:overrides)
 
@@ -102,22 +102,22 @@ if exists("g:jellybeans_background_color")
     let s:overrides["background"] = {}
   endif
 
-  if exists("g:jellybeans_background_color")
-    let s:overrides["background"]["guibg"] = g:jellybeans_background_color
+  if exists("g:jellyscheme_background_color")
+    let s:overrides["background"]["guibg"] = g:jellyscheme_background_color
   endif
 
-  if exists("g:jellybeans_background_color_256")
-    let s:overrides["background"]["256ctermbg"] = g:jellybeans_background_color_256
+  if exists("g:jellyscheme_background_color_256")
+    let s:overrides["background"]["256ctermbg"] = g:jellyscheme_background_color_256
   endif
 
-  if exists("g:jellybeans_use_term_background_color")
-    \ && g:jellybeans_use_term_background_color
+  if exists("g:jellyscheme_use_term_background_color")
+    \ && g:jellyscheme_use_term_background_color
     let s:overrides["background"]["ctermbg"] = "NONE"
     let s:overrides["background"]["256ctermbg"] = "NONE"
   endif
 endif
 
-if exists("g:jellybeans_use_lowcolor_black") && g:jellybeans_use_lowcolor_black
+if exists("g:jellyscheme_use_lowcolor_black") && g:jellyscheme_use_lowcolor_black
   let s:termBlack = "Black"
 else
   let s:termBlack = "Grey"
@@ -127,7 +127,7 @@ endif
 " after Normal's `guibg` is already set to a color. See:
 "
 " - https://github.com/vim/vim/issues/981
-" - https://github.com/nanotech/jellybeans.vim/issues/64
+" - https://github.com/nanotech/jellyscheme.vim/issues/64
 "
 " To work around this, ensure we don't set the default background
 " color before an override changes it to `NONE` by ensuring that the
@@ -140,7 +140,7 @@ if has_key(s:overrides, "background") && has_key(s:overrides["background"], "gui
 endif
 
 " Color approximation functions by Henry So, Jr. and David Liang {{{
-" Added to jellybeans.vim by Daniel Herbert
+" Added to jellyscheme.vim by Daniel Herbert
 
 if &t_Co == 88
 
@@ -394,13 +394,13 @@ fun! s:X(group, fg, bg, attr, lcfg, lcbg)
 
   let l:attr = s:prefix_highlight_value_with("", a:attr)
 
-  if exists("g:jellybeans_use_term_italics") && g:jellybeans_use_term_italics
+  if exists("g:jellyscheme_use_term_italics") && g:jellyscheme_use_term_italics
     let l:cterm_attr = l:attr
   else
     let l:cterm_attr = s:remove_italic_attr(l:attr)
   endif
 
-  if !exists("g:jellybeans_use_gui_italics") || g:jellybeans_use_gui_italics
+  if !exists("g:jellyscheme_use_gui_italics") || g:jellyscheme_use_gui_italics
     let l:gui_attr = l:attr
   else
     let l:gui_attr = s:remove_italic_attr(l:attr)
@@ -418,7 +418,7 @@ call s:X("CursorLine","","1c1c1c","","",s:termBlack)
 call s:X("CursorColumn","","1c1c1c","","",s:termBlack)
 
 " Some of Terminal.app's default themes have a cursor color
-" too close to Jellybeans' preferred MatchParen background
+" too close to jellyscheme' preferred MatchParen background
 " color to be easily distinguishable. Other terminals tend
 " to use a brighter cursor color.
 "
@@ -456,7 +456,8 @@ call s:X("Cursor",s:background_color,"b0d0f0","","","")
 call s:X("LineNr","605958",s:background_color,"NONE",s:termBlack,"")
 call s:X("CursorLineNr","ccc5c4","","NONE","White","")
 call s:X("Comment","888888","","italic","Grey","")
-call s:X("Todo","c7c7c7","","bold","White",s:termBlack)
+call s:X("Todo","ff0000","","bold","White",s:termBlack)
+call s:X("ImprovedTodo","ffd700","","bold","White",s:termBlack)
 
 call s:X("StatusLine","000000","dddddd","italic","","White")
 call s:X("StatusLineNC","ffffff","403c41","italic","White","Black")
@@ -491,7 +492,7 @@ call s:X("NonText","606060",s:background_color,"",s:termBlack,"")
 
 call s:X("SpecialKey","444444","1c1c1c","",s:termBlack,"")
 
-call s:X("Search","f0a0c0","302028","underline","Magenta","")
+call s:X("Search","a0f0d0","000000","underline","Magenta","")
 
 call s:X("Directory","dad085","","","Yellow","")
 call s:X("ErrorMsg","","902020","","","DarkRed")

@@ -1,7 +1,9 @@
-jellybeans.vim
+jellyscheme.vim
 ==============
 
 A colorful, dark color scheme, inspired by [ir_black][] and [twilight][].
+
+Forked from jellybeans.
 
 Designed primarily for a graphical Vim, but includes support for 256, 88, 16,
 and 8 color terminals. On a 16 or 8 color terminal, replace its colors with
@@ -30,7 +32,7 @@ Jellybeans can also be installed through plugin managers such as
 [dein.vim][dein], [Pathogen][pathogen], [VAM][vam],
 [vim-plug][vim-plug], [Vundle][vundle], etc.
 
-To enable the jellybeans color scheme, use 
+To enable the jellybeans color scheme, use
 ```
 :colorscheme jellybeans
 ```
